@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="question-user-service" />
+        <module name="question-manage-service" />
+        <module name="question-common" />
+        <module name="question-center-service" />
+        <module name="question-center-sdk" />
+        <module name="question-user-sdk" />
+        <module name="question-redis" />
+        <module name="question-manage-sdk" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="question-center-skeleton" target="1.8" />
+      <module name="question-manage-skeleton" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="question-center-sdk" options="-parameters" />
+      <module name="question-center-service" options="-parameters" />
+      <module name="question-center-skeleton" options="-parameters" />
+      <module name="question-common" options="-parameters -bootclasspath &quot;D:/Program Files/Java/jdk1.8.0_261/jre/lib/rt.jar;D:/Program Files/Java/jdk1.8.0_261/jre/lib/jce.jar&quot;" />
+      <module name="question-manage-sdk" options="-parameters" />
+      <module name="question-manage-service" options="-parameters" />
+      <module name="question-manage-skeleton" options="-parameters" />
+      <module name="question-redis" options="-parameters" />
+      <module name="question-user-sdk" options="-parameters" />
+      <module name="question-user-service" options="-parameters" />
+    </option>
+  </component>
+</project>

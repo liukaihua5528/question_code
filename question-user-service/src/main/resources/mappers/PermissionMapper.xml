@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.question.user.dao.IPermissionDao">
+
+	<!--List<String> queryPermissionByRoleId(List<Integer> roleIds)-->
+	<!--根据角色id查询权限-->
+	<select id="queryPermissionByRoleId" parameterType="java.lang.Long" resultType="java.lang.String">
+		select
+			permission
+		from permission, role_permission rp
+		where rp.permission_id = permission.id
+		and rp.role_id in
+		<foreach collection="roleIds" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

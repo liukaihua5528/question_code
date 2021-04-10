@@ -1,0 +1,40 @@
+server:
+  port: 8702
+  max-http-header-size: 100KB
+
+nacos:
+  server:
+    addr: 127.0.0.1:8848
+
+spring:
+  application:
+    name: question-manage-service
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        namespace: 77728802-154c-4824-829b-daa8fdc6b52c
+        cluster-name: DEFAULT
+      config:
+        server-addr: ${nacos.server.addr}
+        file-extension: yaml
+        namespace: 77728802-154c-4824-829b-daa8fdc6b52c
+        group: QUESTION_CENTER_GROUP
+        ext-config[0]:
+          refresh: true
+          data-id: spring-boot-http.yaml # spring boot http配置
+          group: COMMON_GROUP # 通用配置组
+        ext-config[1]:
+          refresh: true
+          data-id: spring-boot-starter-druid.yaml # spring boot http配置
+          group: COMMON_GROUP # 通用配置组
+        ext-config[2]:
+          refresh: true
+          data-id: spring-boot-mybatis-plus.yaml # spring boot mybatis plus 配置
+          group: COMMON_GROUP # 通用配置组
+        ext-config[3]:
+          refresh: true
+          data-id: spring-boot-redis.yaml # spring boot mybatis plus 配置
+          group: COMMON_GROUP # 通用配置组

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.question.user.dao.IRoleDao">
+
+	<!--RoleEntity selectRoleByUserId(Integer userId)-->
+	<!--根据用户id查询角色信息-->
+	<select id="selectRoleByUserId" parameterType="java.lang.Long" resultType="com.question.user.entity.RoleEntity">
+		SELECT
+			r.ID AS id,
+			r.ROLE AS role,
+			r.DESC AS `desc`
+		FROM role r LEFT JOIN user_role ur ON r.ID = ur.ROLE_ID
+		LEFT JOIN user u ON u.ID = ur.USER_ID
+		WHERE u.ID = #{userId}
+	</select>
+
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
