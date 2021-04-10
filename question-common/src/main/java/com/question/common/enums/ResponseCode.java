@@ -24,7 +24,7 @@ public enum ResponseCode {
 
     TK10004("TK10004","账号未登录"),
 
-    TK10005("TK10005","用户已登录"),
+    TK10005("TK10005","用户重复登陆"),
     ;
 
     private String code;
