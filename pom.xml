@@ -18,6 +18,7 @@
         <module>question-redis</module>
         <module>question-user-service</module>
         <module>question-user-sdk</module>
+        <module>question-gateway</module>
     </modules>
 
     <parent>

@@ -6,7 +6,11 @@ import com.question.common.entity.BaseResponse;
 import com.question.common.enums.ResponseCode;
 import com.question.common.utils.ResponseJsonUtil;
 import com.question.common.utils.StringUtil;
+import com.question.user.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -33,6 +37,23 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             BaseController.setResponse(base, ResponseCode.TK10006.getCode(),ResponseCode.TK10006.getMessage());
             ResponseJsonUtil.printJson(response, JSON.toJSONString(base));
             return false;
+        }
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.getPrincipal() == null) {
+            log.error("用户未登录");
+            BaseResponse base = new BaseResponse();
+            BaseController.setResponse(base, ResponseCode.TK10004.getCode(),ResponseCode.TK10004.getMessage());
+            ResponseJsonUtil.printJson(response, JSON.toJSONString(base));
+            return false;
+        }else {
+            UserEntity entity = (UserEntity) subject.getPrincipal();
+            if (!StringUtils.equals(entity.getAccount(), userName)) {
+                log.error("该用户未登录");
+                BaseResponse base = new BaseResponse();
+                BaseController.setResponse(base, ResponseCode.TK10004.getCode(),ResponseCode.TK10004.getMessage());
+                ResponseJsonUtil.printJson(response, JSON.toJSONString(base));
+                return false;
+            }
         }
         return true;
     }

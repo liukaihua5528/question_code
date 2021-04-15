@@ -1,0 +1,36 @@
+server:
+  port: 8704
+  max-http-header-size: 100KB
+
+nacos:
+  server:
+    addr: 127.0.0.1:8848
+
+spring:
+  application:
+    name: question-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        namespace: 77728802-154c-4824-829b-daa8fdc6b52c
+        cluster-name: DEFAULT
+      config:
+        server-addr: ${nacos.server.addr}
+        file-extension: yaml
+        namespace: 77728802-154c-4824-829b-daa8fdc6b52c
+        group: QUESTION_GATEWAY_GROUP
+        ext-config[0]:
+          refresh: true
+          data-id: spring-boot-http.yaml # spring boot http配置
+          group: COMMON_GROUP # 通用配置组
+        ext-config[1]:
+          refresh: true
+          data-id: spring-boot-starter-druid.yaml # spring boot http配置
+          group: COMMON_GROUP # 通用配置组
+    gateway:   #使用服务发现路由
+      discovery:
+        locator:
+          enabled: true
