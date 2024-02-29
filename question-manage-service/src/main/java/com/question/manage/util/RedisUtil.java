@@ -27,14 +27,6 @@ public class RedisUtil {
     }
 
     /**
-     * 获取所有key
-     * @return
-     */
-    public Set<String> getKeys() {
-        return getKeys("*");
-    }
-
-    /**
      * 判断key是否存在
      * @param key
      * @return
